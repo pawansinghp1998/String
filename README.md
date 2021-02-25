@@ -57,3 +57,34 @@ class Solution {
         return word;
     }
 }
+
+
+
+Q.3(450)  Given a word, you need to judge whether the usage of capitals in it is right or not.We define the usage of capitals in a word to be
+right when one of the following cases holds:
+All letters in this word are capitals, like "USA".All letters in this word are not capitals, like "leetcode".Only the first letter in this word is 
+capital, like "Google".Otherwise, we define that this word doesn't use capitals in a right way.
+
+
+class Solution {
+    public boolean detectCapitalUse(String word) {
+        int c=0,d=0; boolean z=true; boolean y=false;
+        for(int i=0;i<word.length();i++)
+        {
+           char ch= word.charAt(i);
+            int x=(int)ch;
+            if(x>=65 && x<=90)
+                c++;
+            char ch1=word.charAt(0);
+            int b=(int)ch1;
+            if(b>=65 && b<=90)
+            d=1;
+        }
+        if(c==1 && d==1 || c==word.length() ||c==0)                                           //if one character is in upper case then it must be first character
+       // if(c==1 && Character.isUpperCase(word.charAt(0)) || c==word.length() ||c==0)
+            return z;
+        else
+            return y;
+        
+    }
+}
