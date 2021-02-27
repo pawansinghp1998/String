@@ -89,3 +89,72 @@ class Solution {
         
     }
 }
+
+
+Q.4(459)    Given a string s, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+
+
+class Solution {
+    public boolean repeatedSubstringPattern(String s) {
+        boolean z=true;int c=1;
+        String str="";String str1="";
+        for(int i=0;i<s.length()-c;i++)
+        {
+         if(s.charAt(i)!=s.charAt(i+c))                         //finding the index from which repetition of substring start
+         {
+             c=c+1;
+             i=0;
+         }
+        }
+        str=s.substring(0,c);
+        if(2*c>s.length())
+        {
+        str1=s.substring(c);
+        }
+        else
+            str1=s.substring(c,2*c); 
+            if(str1.equals(str) && str.equals(s.substring(s.length()-c)))         //Condition to check whether that substring sequence repeat or not
+                return true;
+        else 
+            return false;
+    }
+}
+
+
+M2.    
+char[] chars = s.toCharArray();
+int n = chars.length;
+
+for (int size = 1; size <= n / 2; size++) {
+  if (n % size != 0)                                      //finding all substring possible length which can repeat
+  {                                
+	continue;
+  }
+  boolean found = true;
+  for (int i = 0, j = i + size; j < n; ++i, ++j) {          //Checking whether above length of string is repeating or not
+	if (chars[i] != chars[j]) {
+	  found = false;
+	  break;
+	}
+  }
+  if (found) {
+	return true;
+  }
+}
+return false;
+
+Q.5(168) Given a positive integer, return its corresponding column title as appear in an Excel sheet.
+
+class Solution {
+    public String convertToTitle(int n) 
+    {String str="";int rem=0;
+       for(int i=n;i>0;i=(i-1)/26)
+       {
+           rem=(i-1)%26+1;
+           str=(char)(rem+64)+str;
+       }
+            
+        
+        return str;
+    }
+}
