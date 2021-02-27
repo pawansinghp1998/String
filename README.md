@@ -150,7 +150,7 @@ class Solution {
     {String str="";int rem=0;
        for(int i=n;i>0;i=(i-1)/26)
        {
-           rem=(i-1)%26+1;
+           rem=(i-1)%26+1;                        //otherwise instead of returning 26 it was returning zero
            str=(char)(rem+64)+str;
        }
             
@@ -158,3 +158,78 @@ class Solution {
         return str;
     }
 }
+
+
+Q.6(171)  Given a column title as appear in an Excel sheet, return its corresponding column number.
+
+class Solution {
+    public int titleToNumber(String s) {
+        int x=0,sum=0,c=1,y=0;String str="";
+        for(int i=s.length()-1;i>=0;i--)
+        {
+           x=(int)(s.charAt(i));
+            y=x-64;
+               sum=sum+y*c;
+            c=c*26;
+        }
+        return sum;
+    }
+}
+
+
+Q.7(223). Find the total area covered by two rectilinear rectangles in a 2D plane.
+         Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.
+	 
+	 class Solution {
+    public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int area=0,area1=0,c1=0,c2=0;
+        int len1=C-A;
+        int breadth1=D-B;
+        int len2=G-E;
+        int breadth2=H-F;
+        if((E>=A && E<=C)||(G>=A && G<=C)||(E<=A)&&(G>=C))        //condition only to reduce the no of iteration
+        {
+       for(int i=A;i<=C;i++)                                       //To find the common x axis length
+       {
+           for(int j=E;j<=G;j++)
+           {
+               if(i==j)
+                   c1++;
+           }
+       }
+        }
+        if((F>=B && F<=D)||(H>=B && H<=D)||(F<=B)&&(H>=D))                //condition only to reduce the no of iteration
+        {
+        for(int i=B;i<=D;i++)                                       //to find common y axis length
+       {
+           for(int j=F;j<=H;j++)
+           {
+               if(i==j)
+                   c2++;
+           }
+       }
+        }
+        if(c1>0 && c2>0)
+        area1=(c1-1)*(c2-1);
+        else
+            area1=c1*c2;
+        
+        area=len1*breadth1+len2*breadth2-area1;                   //total area equal to area of first rectangle plus area of second rectangle minus area of common portion
+        return area;
+    }
+}
+
+
+M2.
+public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int overlap = 0;
+        
+		// two window does not overlaps if ones start is greater thatn the others end 
+        if(!(C < E || A > G || D < F || B > H)){ 
+            int h = Math.min(D, H) -Math.max(B,F);
+            int l = Math.min(C, G) -Math.max(A,E);  
+            overlap = h*l;
+        }
+	// area 1 + area2 - common area
+        return (C-A) *(D -B) + (G -E)*(H -F) - overlap;
+    }
