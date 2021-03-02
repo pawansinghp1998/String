@@ -233,3 +233,23 @@ public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
 	// area 1 + area2 - common area
         return (C-A) *(D -B) + (G -E)*(H -F) - overlap;
     }
+
+
+Q.8(557).Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+class Solution {
+    public String reverseWords(String s) {
+        String strarr[]=s.split(" ");
+        String str1="";
+        for (int i=0;i<strarr.length;i++)
+        {
+            String str="";
+            for(int j=strarr[i].length()-1;j>=0;j--)
+            {
+                str=str+strarr[i].charAt(j);                       //reversing particular word
+            }
+         str1=str1+" "+str;                                    //concatination of reverses word with whitespace
+        }
+        return str1.trim();
+    }
+}
