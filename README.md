@@ -253,3 +253,95 @@ class Solution {
         return str1.trim();
     }
 }
+
+Q.9 Enter the n no of string and convert the character of the string to upper case if it is in lower case and vice versa and shift the character to right by
+key value entered by user if it exceed z or Z then print z and Z accordingly.
+
+package geekswork;
+import java.util.*;
+public class nykaa {
+	public static void main(String args[])
+	{
+	String str1="";int y=0;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the no of string to be enterd");
+		int n=sc.nextInt();
+		System.out.println("Enter the key by which variable is to be shifted");
+		int r=sc.nextInt();
+		
+		String str[]=new String[n] ;
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter the string");
+			str[i]=sc.next();
+			
+		}
+		for(int i=0;i<n;i++)
+		{
+			String st="";
+			str1=str[i];
+			for(int j=0;j<str1.length();j++)
+			{
+				int x=(int)str1.charAt(j);
+				if(x>=65 && x<=90)
+				{
+				 y =x+32+r;
+				 if(y<=122)
+					 st=st+(char)y;
+				 else
+					 st=st+"z";
+				}
+				else if(x>=97 && x<=122)
+				{
+					y=x-32+r;
+					if(y<=90)
+						st=st+(char)y;
+					else
+						st=st+"Z";
+				}
+				else
+					st=st+str1.charAt(j);
+			}
+			System.out.println(st);
+		}
+
+	}
+
+}
+
+Q.Find whther by using only one operation on given string u can find word programming then print Yes otherwise print No.
+
+package geekswork;
+import java.util.*;
+public class nykaa2
+{
+	public static void main (String args[])
+	{
+		int index=0;int z=0; String str2=""; String str3="";
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the string");
+		String str=sc.next();
+		String str1="programming";
+		if(str=="programming")
+			System.out.println("Yes");
+		else
+		{
+		for(int i=0;i<str1.length();i++)
+		{
+			str2=str1.substring(0,i);
+			str3=str1.substring(i);
+			if(str.indexOf(str2)!=-1 && str.indexOf(str3)!=-1 && str.indexOf(str2)<str.indexOf(str3))
+			{
+				z=1;
+				break;
+			}
+		}
+		if(z==1)
+			System.out.println("Yes");
+		else
+			System.out.println("No");
+		}
+	}
+
+}
+
